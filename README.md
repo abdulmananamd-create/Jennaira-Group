@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Kasir Lengkap + Export Excel</title>
+    <title>Aplikasi Kasir Lengkap - GitHub Pages Fixed</title>
     <!-- ANTI CACHE -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
-    <!-- EXCELJS CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
-    <!-- FILE SAVER -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <!-- CHART JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         /* RESET DAN BASE STYLES */
@@ -121,22 +114,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* ACTION BAR */
-        .action-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #eee;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
         }
         
         /* DASHBOARD */
@@ -289,47 +266,6 @@
             justify-content: center;
         }
         
-        /* EXPORT OPTIONS */
-        .export-options {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-        
-        .export-option {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            min-width: 120px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-        
-        .export-option:hover {
-            border-color: #3498db;
-            transform: translateY(-3px);
-        }
-        
-        .export-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        
-        .export-label {
-            font-size: 12px;
-            text-align: center;
-            color: #2c3e50;
-            font-weight: 600;
-        }
-        
         /* FORM */
         .form-group {
             margin-bottom: 20px;
@@ -399,20 +335,6 @@
             color: white;
         }
         
-        .btn-excel {
-            background: #217346;
-            color: white;
-        }
-        
-        .btn-excel:hover {
-            background: #1a5c38;
-        }
-        
-        .btn-pdf {
-            background: #e74c3c;
-            color: white;
-        }
-        
         .btn-lg {
             padding: 15px 30px;
             font-size: 18px;
@@ -451,57 +373,29 @@
             background: #f8f9fa;
         }
         
-        /* MODAL */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-body {
-            padding: 20px;
-        }
-        
-        .modal-footer {
-            padding: 15px 20px;
-            border-top: 1px solid #eee;
-            text-align: right;
-        }
-        
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #7f8c8d;
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .kasir-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1;
+                min-width: 120px;
+                justify-content: center;
+            }
         }
         
         /* UTILITIES */
@@ -566,52 +460,6 @@
                 transform: translateY(0);
             }
         }
-        
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .kasir-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .nav-tabs {
-                flex-wrap: wrap;
-            }
-            
-            .nav-tab {
-                flex: 1;
-                min-width: 120px;
-                justify-content: center;
-            }
-            
-            .action-bar {
-                flex-direction: column;
-                gap: 15px;
-                align-items: stretch;
-            }
-        }
-        
-        /* PRINT STRUK */
-        @media print {
-            .navbar, .no-print {
-                display: none !important;
-            }
-            
-            .section {
-                display: none !important;
-            }
-            
-            #printArea, #printArea * {
-                display: block !important;
-            }
-        }
     </style>
 </head>
 <body>
@@ -627,67 +475,6 @@
     <div id="alertSuccess" class="alert alert-success"></div>
     <div id="alertError" class="alert alert-error"></div>
 
-    <!-- MODAL EXPORT OPTIONS -->
-    <div id="exportModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>📊 Export Data</h3>
-                <button class="close-btn" onclick="closeExportModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="export-options">
-                    <div class="export-option" onclick="exportToExcel('penjualan')">
-                        <div class="export-icon">💰</div>
-                        <div class="export-label">Laporan Penjualan</div>
-                    </div>
-                    
-                    <div class="export-option" onclick="exportToExcel('produk')">
-                        <div class="export-icon">📦</div>
-                        <div class="export-label">Data Produk</div>
-                    </div>
-                    
-                    <div class="export-option" onclick="exportToExcel('stok')">
-                        <div class="export-icon">📊</div>
-                        <div class="export-label">Laporan Stok</div>
-                    </div>
-                    
-                    <div class="export-option" onclick="exportToExcel('transaksi')">
-                        <div class="export-icon">🧾</div>
-                        <div class="export-label">Transaksi Harian</div>
-                    </div>
-                    
-                    <div class="export-option" onclick="exportToExcel('custom')">
-                        <div class="export-icon">📅</div>
-                        <div class="export-label">Custom Periode</div>
-                    </div>
-                    
-                    <div class="export-option" onclick="exportToPDF()">
-                        <div class="export-icon">📄</div>
-                        <div class="export-label">Export PDF</div>
-                    </div>
-                </div>
-                
-                <!-- CUSTOM PERIODE -->
-                <div id="customExportOptions" style="display: none; margin-top: 20px;">
-                    <h4>Custom Periode Export</h4>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-                        <div class="form-group">
-                            <label class="form-label">Dari Tanggal</label>
-                            <input type="date" id="exportStartDate" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Sampai Tanggal</label>
-                            <input type="date" id="exportEndDate" class="form-input">
-                        </div>
-                    </div>
-                    <button class="btn btn-excel btn-block" onclick="exportCustomPeriod()">
-                        📥 Export Custom Periode
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- APLIKASI KASIR -->
     <div class="app-container">
         <!-- HEADER -->
@@ -696,7 +483,7 @@
                 <div class="logo-icon">💰</div>
                 <div>
                     <h1 style="font-size: 28px; margin-bottom: 5px;">KASIR PRO</h1>
-                    <p style="opacity: 0.9; font-size: 14px;">Sistem Kasir dengan Export Excel</p>
+                    <p style="opacity: 0.9; font-size: 14px;">Sistem Kasir Lengkap untuk UMKM</p>
                 </div>
             </div>
             <div style="text-align: right;">
@@ -722,8 +509,8 @@
             <button class="nav-tab" onclick="showTab('transaksi')">
                 🧾 Riwayat
             </button>
-            <button class="nav-tab" onclick="showTab('export')">
-                📥 Export Data
+            <button class="nav-tab" onclick="showTab('settings')">
+                ⚙️ Pengaturan
             </button>
         </nav>
 
@@ -731,17 +518,7 @@
         <main class="content-area">
             <!-- DASHBOARD -->
             <div id="dashboard" class="tab-content active">
-                <div class="action-bar">
-                    <h2>📊 Dashboard Penjualan</h2>
-                    <div class="action-buttons">
-                        <button class="btn btn-excel" onclick="exportDashboardExcel()">
-                            📊 Export Dashboard
-                        </button>
-                        <button class="btn btn-primary" onclick="refreshDashboard()">
-                            🔄 Refresh
-                        </button>
-                    </div>
-                </div>
+                <h2 class="mb-20">📊 Dashboard Penjualan</h2>
                 
                 <div class="stats-grid">
                     <div class="stat-card sales">
@@ -769,40 +546,27 @@
                     </div>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
-                    <div style="background: white; border-radius: 15px; padding: 25px;">
-                        <h3>📈 Grafik Penjualan 7 Hari Terakhir</h3>
-                        <canvas id="salesChart" style="width: 100%; height: 300px;"></canvas>
-                    </div>
-                    
-                    <div style="background: white; border-radius: 15px; padding: 25px;">
-                        <h3>🏆 Top 5 Produk Terlaris</h3>
-                        <div id="topProducts" style="margin-top: 15px;">
-                            <!-- Top products will be filled by JS -->
-                        </div>
-                    </div>
+                <div style="background: white; border-radius: 15px; padding: 25px; margin-top: 30px;">
+                    <h3>📈 Grafik Penjualan 7 Hari Terakhir</h3>
+                    <canvas id="salesChart" style="width: 100%; height: 300px;"></canvas>
                 </div>
             </div>
 
             <!-- KASIR -->
             <div id="kasir" class="tab-content">
-                <div class="action-bar">
-                    <h2>💼 Kasir Point of Sale</h2>
-                    <div class="action-buttons">
-                        <button class="btn btn-success" onclick="processPayment()">
-                            💳 Proses Pembayaran
-                        </button>
-                        <button class="btn btn-danger" onclick="clearCart()">
-                            🗑️ Kosongkan
-                        </button>
-                    </div>
-                </div>
+                <h2 class="mb-20">💼 Kasir Point of Sale</h2>
                 
                 <div class="kasir-container">
                     <!-- KERANJANG -->
                     <div class="cart-items">
-                        <h3>🛒 Keranjang Belanja</h3>
-                        <div id="cartContainer" style="margin-top: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3>🛒 Keranjang Belanja</h3>
+                            <button class="btn btn-danger" onclick="clearCart()">
+                                🗑️ Kosongkan
+                            </button>
+                        </div>
+                        
+                        <div id="cartContainer">
                             <div class="text-center p-20" style="color: #7f8c8d;">
                                 <div style="font-size: 60px; margin-bottom: 20px;">🛒</div>
                                 <h4>Keranjang Kosong</h4>
@@ -864,19 +628,11 @@
 
             <!-- PRODUK & STOK -->
             <div id="produk" class="tab-content">
-                <div class="action-bar">
-                    <div>
-                        <h2>📦 Manajemen Produk & Stok</h2>
-                        <p style="color: #7f8c8d; font-size: 14px; margin-top: 5px;">Total: <span id="totalProductCount">0</span> produk</p>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn btn-success" onclick="showAddProductModal()">
-                            ➕ Tambah Produk
-                        </button>
-                        <button class="btn btn-excel" onclick="exportProductExcel()">
-                            📥 Export Produk
-                        </button>
-                    </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>📦 Manajemen Produk & Stok</h2>
+                    <button class="btn btn-success" onclick="showAddProductModal()">
+                        ➕ Tambah Produk
+                    </button>
                 </div>
                 
                 <!-- FILTER -->
@@ -916,17 +672,7 @@
 
             <!-- LAPORAN -->
             <div id="laporan" class="tab-content">
-                <div class="action-bar">
-                    <h2>📈 Laporan Penjualan</h2>
-                    <div class="action-buttons">
-                        <button class="btn btn-excel" onclick="exportSalesExcel()">
-                            📥 Export Excel
-                        </button>
-                        <button class="btn btn-primary" onclick="generateReport()">
-                            🔍 Generate
-                        </button>
-                    </div>
-                </div>
+                <h2 class="mb-20">📈 Laporan Penjualan</h2>
                 
                 <!-- FILTER LAPORAN -->
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
@@ -953,6 +699,12 @@
                                     <input type="date" id="endDate" class="form-input">
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div style="align-self: end;">
+                            <button class="btn btn-primary btn-block" onclick="generateReport()">
+                                🔍 Generate Laporan
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1000,17 +752,7 @@
 
             <!-- RIWAYAT TRANSAKSI -->
             <div id="transaksi" class="tab-content">
-                <div class="action-bar">
-                    <h2>🧾 Riwayat Transaksi</h2>
-                    <div class="action-buttons">
-                        <button class="btn btn-excel" onclick="exportTransactionsExcel()">
-                            📥 Export Excel
-                        </button>
-                        <button class="btn btn-primary" onclick="loadTransactions()">
-                            🔄 Refresh
-                        </button>
-                    </div>
-                </div>
+                <h2 class="mb-20">🧾 Riwayat Transaksi</h2>
                 
                 <div style="overflow-x: auto;">
                     <table class="data-table">
@@ -1033,104 +775,43 @@
                 </div>
             </div>
 
-            <!-- EXPORT DATA -->
-            <div id="export" class="tab-content">
-                <div class="action-bar">
-                    <h2>📥 Export Data ke Excel</h2>
-                    <div class="action-buttons">
-                        <button class="btn btn-excel" onclick="showExportModal()">
-                            📊 Pilih Export
-                        </button>
-                        <button class="btn btn-primary" onclick="exportAllData()">
-                            📦 Export Semua
-                        </button>
-                    </div>
-                </div>
+            <!-- PENGATURAN -->
+            <div id="settings" class="tab-content">
+                <h2 class="mb-20">⚙️ Pengaturan Aplikasi</h2>
                 
-                <div style="background: #f8f9fa; border-radius: 15px; padding: 30px; margin-top: 20px;">
-                    <h3>📋 Pilihan Export Data</h3>
-                    <p style="color: #7f8c8d; margin-bottom: 30px;">Pilih jenis data yang ingin diexport ke Excel</p>
+                <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
+                    <h3 style="margin-bottom: 20px;">Konfigurasi Sistem</h3>
                     
-                    <div class="export-options">
-                        <div class="export-option" onclick="exportToExcel('penjualan')">
-                            <div class="export-icon">💰</div>
-                            <div class="export-label">Laporan Penjualan</div>
-                            <small style="color: #7f8c8d; margin-top: 5px;">Data penjualan harian</small>
-                        </div>
-                        
-                        <div class="export-option" onclick="exportToExcel('produk')">
-                            <div class="export-icon">📦</div>
-                            <div class="export-label">Master Produk</div>
-                            <small style="color: #7f8c8d; margin-top: 5px;">Data semua produk</small>
-                        </div>
-                        
-                        <div class="export-option" onclick="exportToExcel('stok')">
-                            <div class="export-icon">📊</div>
-                            <div class="export-label">Laporan Stok</div>
-                            <small style="color: #7f8c8d; margin-top: 5px;">Stok barang & alert</small>
-                        </div>
-                        
-                        <div class="export-option" onclick="exportToExcel('transaksi')">
-                            <div class="export-icon">🧾</div>
-                            <div class="export-label">Transaksi Detail</div>
-                            <small style="color: #7f8c8d; margin-top: 5px;">Detail semua transaksi</small>
-                        </div>
-                        
-                        <div class="export-option" onclick="exportToExcel('custom')">
-                            <div class="export-icon">📅</div>
-                            <div class="export-label">Custom Periode</div>
-                            <small style="color: #7f8c8d; margin-top: 5px;">Export berdasarkan periode</small>
-                        </div>
-                        
-                        <div class="export-option" onclick="exportToPDF()">
-                            <div class="export-icon">📄</div>
-                            <div class="export-label">Export PDF</div>
-                            <small style="color: #7f8c8d; margin-top: 5px;">Laporan dalam PDF</small>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Nama Toko</label>
+                        <input type="text" id="storeName" class="form-input" value="TOKO MAKMUR SEJAHTERA">
                     </div>
                     
-                    <!-- QUICK STATS -->
-                    <div style="margin-top: 40px;">
-                        <h3>📈 Statistik Data Tersedia</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
-                            <div style="background: white; padding: 20px; border-radius: 10px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #3498db;" id="exportProductCount">0</div>
-                                <div style="color: #7f8c8d; font-size: 14px;">Total Produk</div>
-                            </div>
-                            <div style="background: white; padding: 20px; border-radius: 10px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #27ae60;" id="exportTransactionCount">0</div>
-                                <div style="color: #7f8c8d; font-size: 14px;">Total Transaksi</div>
-                            </div>
-                            <div style="background: white; padding: 20px; border-radius: 10px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #e74c3c;" id="exportLowStockCount">0</div>
-                                <div style="color: #7f8c8d; font-size: 14px;">Stok Rendah</div>
-                            </div>
-                            <div style="background: white; padding: 20px; border-radius: 10px;">
-                                <div style="font-size: 24px; font-weight: bold; color: #f39c12;" id="exportTodaySales">Rp 0</div>
-                                <div style="color: #7f8c8d; font-size: 14px;">Penjualan Hari Ini</div>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Alamat Toko</label>
+                        <textarea id="storeAddress" class="form-input" rows="3">Jl. Contoh No. 123, Kota Contoh</textarea>
                     </div>
                     
-                    <!-- EXPORT HISTORY -->
-                    <div style="margin-top: 40px;">
-                        <h3>📋 Riwayat Export</h3>
-                        <div style="overflow-x: auto; margin-top: 20px;">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Tanggal</th>
-                                        <th>Jenis Data</th>
-                                        <th>Jumlah Data</th>
-                                        <th>Ukuran File</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="exportHistoryTable">
-                                    <!-- Export history will be filled by JS -->
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Telepon</label>
+                        <input type="text" id="storePhone" class="form-input" value="(021) 1234-5678">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Pajak (%)</label>
+                        <input type="number" id="taxRate" class="form-input" value="10" min="0" max="100">
+                    </div>
+                    
+                    <div class="btn-group" style="display: flex; gap: 10px; margin-top: 30px;">
+                        <button class="btn btn-success" onclick="saveSettings()">
+                            💾 Simpan Pengaturan
+                        </button>
+                        <button class="btn btn-danger" onclick="resetData()">
+                            🔄 Reset Data
+                        </button>
+                        <button class="btn btn-primary" onclick="exportData()">
+                            📥 Export Data
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1195,10 +876,11 @@
     </div>
 
     <!-- SCRIPT UTAMA -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // ==================== INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Aplikasi Kasir PRO dengan Export Excel Loading...');
+            console.log('Aplikasi Kasir PRO Loading...');
             showLoading(true);
             
             // Initialize aplikasi
@@ -1213,13 +895,12 @@
             loadProductsForKasir();
             loadProductsForManage();
             loadTransactions();
-            updateExportStats();
             
             showLoading(false);
             
             // Show welcome message
             setTimeout(() => {
-                showAlert('success', 'Aplikasi Kasir PRO dengan Export Excel siap digunakan!');
+                showAlert('success', 'Aplikasi Kasir PRO siap digunakan!');
             }, 1000);
         });
 
@@ -1230,11 +911,10 @@
         let settings = {};
         let salesChartInstance = null;
         let currentProductId = null;
-        let exportHistory = JSON.parse(localStorage.getItem('kasir_export_history')) || [];
 
         // ==================== APP INITIALIZATION ====================
         function initializeApp() {
-            console.log('Initializing app with Excel export...');
+            console.log('Initializing app...');
             
             // Load data from localStorage
             products = JSON.parse(localStorage.getItem('kasir_products')) || getDefaultProducts();
@@ -1263,8 +943,7 @@
                     unit: 'pack',
                     stock: 45,
                     minStock: 10,
-                    sold: 125,
-                    barcode: '899999901001'
+                    sold: 125
                 },
                 {
                     id: 2,
@@ -1276,8 +955,7 @@
                     unit: 'botol',
                     stock: 28,
                     minStock: 10,
-                    sold: 89,
-                    barcode: '899999901002'
+                    sold: 89
                 },
                 {
                     id: 3,
@@ -1289,8 +967,7 @@
                     unit: 'kg',
                     stock: 12,
                     minStock: 10,
-                    sold: 156,
-                    barcode: '899999901003'
+                    sold: 156
                 },
                 {
                     id: 4,
@@ -1302,8 +979,7 @@
                     unit: 'kg',
                     stock: 8,
                     minStock: 10,
-                    sold: 67,
-                    barcode: '899999901004'
+                    sold: 67
                 },
                 {
                     id: 5,
@@ -1315,8 +991,7 @@
                     unit: 'pcs',
                     stock: 120,
                     minStock: 20,
-                    sold: 234,
-                    barcode: '899999901005'
+                    sold: 234
                 },
                 {
                     id: 6,
@@ -1328,8 +1003,7 @@
                     unit: 'botol',
                     stock: 35,
                     minStock: 10,
-                    sold: 78,
-                    barcode: '899999901006'
+                    sold: 78
                 },
                 {
                     id: 7,
@@ -1341,8 +1015,7 @@
                     unit: 'botol',
                     stock: 150,
                     minStock: 30,
-                    sold: 345,
-                    barcode: '899999901007'
+                    sold: 345
                 },
                 {
                     id: 8,
@@ -1354,8 +1027,7 @@
                     unit: 'pcs',
                     stock: 89,
                     minStock: 20,
-                    sold: 289,
-                    barcode: '899999901008'
+                    sold: 289
                 },
                 {
                     id: 9,
@@ -1367,8 +1039,7 @@
                     unit: 'pcs',
                     stock: 65,
                     minStock: 20,
-                    sold: 167,
-                    barcode: '899999901009'
+                    sold: 167
                 },
                 {
                     id: 10,
@@ -1380,8 +1051,7 @@
                     unit: 'pack',
                     stock: 42,
                     minStock: 15,
-                    sold: 134,
-                    barcode: '899999901010'
+                    sold: 134
                 }
             ];
         }
@@ -1397,7 +1067,10 @@
         }
 
         function applySettings() {
-            // Settings applied in individual functions
+            document.getElementById('storeName').value = settings.storeName;
+            document.getElementById('storeAddress').value = settings.storeAddress;
+            document.getElementById('storePhone').value = settings.storePhone;
+            document.getElementById('taxRate').value = settings.taxRate;
         }
 
         // ==================== NAVIGATION ====================
@@ -1419,7 +1092,6 @@
             if (tabId === 'produk') loadProductsForManage();
             if (tabId === 'laporan') generateReport();
             if (tabId === 'transaksi') loadTransactions();
-            if (tabId === 'export') updateExportStats();
         }
 
         // ==================== DASHBOARD ====================
@@ -1457,9 +1129,6 @@
             
             // Update sales chart
             updateSalesChart();
-            
-            // Update top products
-            updateTopProducts();
         }
 
         function updateSalesChart() {
@@ -1533,699 +1202,7 @@
             });
         }
 
-        function updateTopProducts() {
-            const container = document.getElementById('topProducts');
-            if (!container) return;
-            
-            // Count sales per product
-            let productSales = {};
-            transactions.forEach(trans => {
-                trans.items.forEach(item => {
-                    if (!productSales[item.name]) {
-                        productSales[item.name] = {
-                            quantity: 0,
-                            total: 0
-                        };
-                    }
-                    productSales[item.name].quantity += item.quantity;
-                    productSales[item.name].total += item.quantity * item.price;
-                });
-            });
-            
-            // Sort by quantity sold
-            const topProducts = Object.entries(productSales)
-                .sort((a, b) => b[1].quantity - a[1].quantity)
-                .slice(0, 5);
-            
-            let html = '';
-            topProducts.forEach(([name, data], index) => {
-                const product = products.find(p => p.name === name);
-                html += `
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: ${index % 2 === 0 ? '#f8f9fa' : 'white'}; border-radius: 8px; margin-bottom: 10px;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="font-weight: bold; color: #2c3e50;">${index + 1}.</div>
-                            <div>
-                                <div style="font-weight: 600;">${name}</div>
-                                <div style="font-size: 12px; color: #7f8c8d;">${product?.category || '-'}</div>
-                            </div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-weight: bold; color: #27ae60;">${data.quantity} pcs</div>
-                            <div style="font-size: 12px; color: #7f8c8d;">${formatCurrency(data.total)}</div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html || '<p style="color: #7f8c8d; text-align: center;">Belum ada data penjualan</p>';
-        }
-
-        function refreshDashboard() {
-            loadDashboard();
-            showAlert('success', 'Dashboard berhasil di-refresh');
-        }
-
-        // ==================== EXPORT EXCEL FUNCTIONS ====================
-        
-        async function exportToExcel(type) {
-            showLoading(true);
-            
-            try {
-                const workbook = new ExcelJS.Workbook();
-                workbook.creator = 'Aplikasi Kasir PRO';
-                workbook.lastModifiedBy = 'Kasir System';
-                workbook.created = new Date();
-                workbook.modified = new Date();
-                
-                let fileName = '';
-                let worksheet;
-                
-                switch(type) {
-                    case 'penjualan':
-                        fileName = `Laporan_Penjualan_${getCurrentDate()}.xlsx`;
-                        worksheet = await createSalesReportWorksheet(workbook);
-                        break;
-                        
-                    case 'produk':
-                        fileName = `Data_Produk_${getCurrentDate()}.xlsx`;
-                        worksheet = await createProductWorksheet(workbook);
-                        break;
-                        
-                    case 'stok':
-                        fileName = `Laporan_Stok_${getCurrentDate()}.xlsx`;
-                        worksheet = await createStockReportWorksheet(workbook);
-                        break;
-                        
-                    case 'transaksi':
-                        fileName = `Transaksi_${getCurrentDate()}.xlsx`;
-                        worksheet = await createTransactionWorksheet(workbook);
-                        break;
-                        
-                    case 'custom':
-                        showCustomExportOptions();
-                        showLoading(false);
-                        return;
-                        
-                    default:
-                        showAlert('error', 'Jenis export tidak dikenali');
-                        showLoading(false);
-                        return;
-                }
-                
-                // Auto-fit columns
-                worksheet.columns.forEach(column => {
-                    column.width = column.header.length + 5;
-                });
-                
-                // Generate Excel file
-                const buffer = await workbook.xlsx.writeBuffer();
-                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-                saveAs(blob, fileName);
-                
-                // Add to export history
-                addToExportHistory(type, fileName, worksheet.rowCount - 1);
-                
-                showAlert('success', `Data berhasil diexport ke ${fileName}`);
-                
-            } catch (error) {
-                console.error('Export error:', error);
-                showAlert('error', 'Gagal export data: ' + error.message);
-            } finally {
-                showLoading(false);
-            }
-        }
-
-        async function createSalesReportWorksheet(workbook) {
-            const worksheet = workbook.addWorksheet('Laporan Penjualan');
-            
-            // Header
-            worksheet.mergeCells('A1:G1');
-            worksheet.getCell('A1').value = 'LAPORAN PENJUALAN';
-            worksheet.getCell('A1').font = { bold: true, size: 16 };
-            worksheet.getCell('A1').alignment = { horizontal: 'center' };
-            
-            worksheet.mergeCells('A2:G2');
-            worksheet.getCell('A2').value = settings.storeName;
-            worksheet.getCell('A2').font = { size: 12 };
-            worksheet.getCell('A2').alignment = { horizontal: 'center' };
-            
-            worksheet.mergeCells('A3:G3');
-            worksheet.getCell('A3').value = `Periode: ${new Date().toLocaleDateString('id-ID')}`;
-            worksheet.getCell('A3').alignment = { horizontal: 'center' };
-            
-            // Column headers
-            const headers = ['No', 'Tanggal', 'ID Transaksi', 'Nama Produk', 'Qty', 'Harga Satuan', 'Total'];
-            worksheet.addRow(headers);
-            
-            // Style header row
-            const headerRow = worksheet.getRow(5);
-            headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-            headerRow.fill = {
-                type: 'pattern',
-                pattern: 'solid',
-                fgColor: { argb: 'FF2C3E50' }
-            };
-            headerRow.alignment = { horizontal: 'center' };
-            
-            // Data rows
-            let rowNumber = 1;
-            let grandTotal = 0;
-            
-            transactions.forEach(transaction => {
-                transaction.items.forEach(item => {
-                    const row = worksheet.addRow([
-                        rowNumber++,
-                        transaction.date,
-                        transaction.id,
-                        item.name,
-                        item.quantity,
-                        item.price,
-                        item.quantity * item.price
-                    ]);
-                    
-                    // Alternate row colors
-                    if (rowNumber % 2 === 0) {
-                        row.fill = {
-                            type: 'pattern',
-                            pattern: 'solid',
-                            fgColor: { argb: 'FFF8F9FA' }
-                        };
-                    }
-                    
-                    grandTotal += item.quantity * item.price;
-                });
-            });
-            
-            // Summary row
-            worksheet.addRow([]);
-            const summaryRow = worksheet.addRow(['', '', '', '', '', 'TOTAL:', grandTotal]);
-            summaryRow.getCell(6).font = { bold: true };
-            summaryRow.getCell(7).font = { bold: true };
-            summaryRow.getCell(7).numFmt = '"Rp"#,##0';
-            
-            return worksheet;
-        }
-
-        async function createProductWorksheet(workbook) {
-            const worksheet = workbook.addWorksheet('Data Produk');
-            
-            // Header
-            worksheet.mergeCells('A1:H1');
-            worksheet.getCell('A1').value = 'DATA MASTER PRODUK';
-            worksheet.getCell('A1').font = { bold: true, size: 16 };
-            worksheet.getCell('A1').alignment = { horizontal: 'center' };
-            
-            worksheet.mergeCells('A2:H2');
-            worksheet.getCell('A2').value = `Total Produk: ${products.length}`;
-            worksheet.getCell('A2').alignment = { horizontal: 'center' };
-            
-            // Column headers
-            const headers = ['Kode', 'Nama Produk', 'Kategori', 'Satuan', 'Harga Beli', 'Harga Jual', 'Stok', 'Status'];
-            worksheet.addRow(headers);
-            
-            // Style header row
-            const headerRow = worksheet.getRow(4);
-            headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-            headerRow.fill = {
-                type: 'pattern',
-                pattern: 'solid',
-                fgColor: { argb: 'FF27AE60' }
-            };
-            headerRow.alignment = { horizontal: 'center' };
-            
-            // Data rows
-            products.forEach((product, index) => {
-                const status = product.stock < product.minStock ? 'STOK RENDAH' : 
-                              product.stock < product.minStock * 2 ? 'STOK SEDANG' : 'STOK AMAN';
-                
-                const row = worksheet.addRow([
-                    product.code,
-                    product.name,
-                    product.category,
-                    product.unit,
-                    product.cost,
-                    product.price,
-                    product.stock,
-                    status
-                ]);
-                
-                // Style based on stock status
-                if (product.stock < product.minStock) {
-                    row.getCell(8).fill = {
-                        type: 'pattern',
-                        pattern: 'solid',
-                        fgColor: { argb: 'FFFFCCCC' }
-                    };
-                }
-                
-                // Number formatting for currency
-                row.getCell(5).numFmt = '"Rp"#,##0';
-                row.getCell(6).numFmt = '"Rp"#,##0';
-                
-                // Alternate row colors
-                if (index % 2 === 0) {
-                    row.fill = {
-                        type: 'pattern',
-                        pattern: 'solid',
-                        fgColor: { argb: 'FFF8F9FA' }
-                    };
-                }
-            });
-            
-            // Auto-fit columns
-            worksheet.columns = [
-                { width: 15 }, // Kode
-                { width: 30 }, // Nama
-                { width: 15 }, // Kategori
-                { width: 10 }, // Satuan
-                { width: 15 }, // Harga Beli
-                { width: 15 }, // Harga Jual
-                { width: 10 }, // Stok
-                { width: 15 }  // Status
-            ];
-            
-            return worksheet;
-        }
-
-        async function createStockReportWorksheet(workbook) {
-            const worksheet = workbook.addWorksheet('Laporan Stok');
-            
-            // Header
-            worksheet.mergeCells('A1:G1');
-            worksheet.getCell('A1').value = 'LAPORAN STOK BARANG';
-            worksheet.getCell('A1').font = { bold: true, size: 16 };
-            worksheet.getCell('A1').alignment = { horizontal: 'center' };
-            
-            worksheet.mergeCells('A2:G2');
-            const lowStockCount = products.filter(p => p.stock < p.minStock).length;
-            worksheet.getCell('A2').value = `Total Produk: ${products.length} | Stok Rendah: ${lowStockCount}`;
-            worksheet.getCell('A2').alignment = { horizontal: 'center' };
-            
-            // Column headers
-            const headers = ['No', 'Kode Produk', 'Nama Produk', 'Stok Saat Ini', 'Stok Minimal', 'Selisih', 'Status'];
-            worksheet.addRow(headers);
-            
-            // Style header row
-            const headerRow = worksheet.getRow(4);
-            headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-            headerRow.fill = {
-                type: 'pattern',
-                pattern: 'solid',
-                fgColor: { argb: 'FFF39C12' }
-            };
-            headerRow.alignment = { horizontal: 'center' };
-            
-            // Data rows
-            products.forEach((product, index) => {
-                const difference = product.stock - product.minStock;
-                const status = difference < 0 ? 'PERLU RESTOCK' : 
-                              difference < 5 ? 'HATI-HATI' : 'AMAN';
-                
-                const row = worksheet.addRow([
-                    index + 1,
-                    product.code,
-                    product.name,
-                    product.stock,
-                    product.minStock,
-                    difference,
-                    status
-                ]);
-                
-                // Color coding based on status
-                if (status === 'PERLU RESTOCK') {
-                    row.fill = {
-                        type: 'pattern',
-                        pattern: 'solid',
-                        fgColor: { argb: 'FFFFCCCC' }
-                    };
-                    row.font = { bold: true, color: { argb: 'FFE74C3C' } };
-                } else if (status === 'HATI-HATI') {
-                    row.fill = {
-                        type: 'pattern',
-                        pattern: 'solid',
-                        fgColor: { argb: 'FFFFEECC' }
-                    };
-                }
-                
-                // Alternate row colors
-                if (index % 2 === 1) {
-                    const currentFill = row.fill || {};
-                    row.fill = {
-                        type: 'pattern',
-                        pattern: 'solid',
-                        fgColor: { argb: 'FFF8F9FA' }
-                    };
-                }
-            });
-            
-            // Summary section
-            worksheet.addRow([]);
-            const lowStockProducts = products.filter(p => p.stock < p.minStock);
-            if (lowStockProducts.length > 0) {
-                worksheet.addRow(['PRODUK YANG PERLU RESTOCK:', '', '', '', '', '', '']);
-                lowStockProducts.forEach((product, index) => {
-                    worksheet.addRow([
-                        '',
-                        product.code,
-                        product.name,
-                        product.stock,
-                        product.minStock,
-                        product.stock - product.minStock,
-                        'SEGERA RESTOCK!'
-                    ]);
-                });
-            }
-            
-            return worksheet;
-        }
-
-        async function createTransactionWorksheet(workbook) {
-            const worksheet = workbook.addWorksheet('Transaksi');
-            
-            // Header
-            worksheet.mergeCells('A1:H1');
-            worksheet.getCell('A1').value = 'LAPORAN TRANSAKSI DETAIL';
-            worksheet.getCell('A1').font = { bold: true, size: 16 };
-            worksheet.getCell('A1').alignment = { horizontal: 'center' };
-            
-            worksheet.mergeCells('A2:H2');
-            worksheet.getCell('A2').value = `Total Transaksi: ${transactions.length}`;
-            worksheet.getCell('A2').alignment = { horizontal: 'center' };
-            
-            // Column headers
-            const headers = ['No', 'Tanggal', 'Waktu', 'ID Transaksi', 'Total Items', 'Subtotal', 'Pajak', 'Total'];
-            worksheet.addRow(headers);
-            
-            // Style header row
-            const headerRow = worksheet.getRow(4);
-            headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-            headerRow.fill = {
-                type: 'pattern',
-                pattern: 'solid',
-                fgColor: { argb: 'FF3498DB' }
-            };
-            headerRow.alignment = { horizontal: 'center' };
-            
-            // Data rows
-            transactions.forEach((transaction, index) => {
-                const totalItems = transaction.items.reduce((sum, item) => sum + item.quantity, 0);
-                const taxAmount = transaction.subtotal * (transaction.tax / 100);
-                
-                const row = worksheet.addRow([
-                    index + 1,
-                    transaction.date,
-                    transaction.time,
-                    transaction.id,
-                    totalItems,
-                    transaction.subtotal,
-                    taxAmount,
-                    transaction.total
-                ]);
-                
-                // Number formatting for currency
-                row.getCell(6).numFmt = '"Rp"#,##0';
-                row.getCell(7).numFmt = '"Rp"#,##0';
-                row.getCell(8).numFmt = '"Rp"#,##0';
-                
-                // Alternate row colors
-                if (index % 2 === 0) {
-                    row.fill = {
-                        type: 'pattern',
-                        pattern: 'solid',
-                        fgColor: { argb: 'FFF8F9FA' }
-                    };
-                }
-            });
-            
-            // Summary
-            const totalSales = transactions.reduce((sum, trans) => sum + trans.total, 0);
-            worksheet.addRow([]);
-            worksheet.addRow(['', '', '', '', '', '', 'TOTAL PENJUALAN:', totalSales]);
-            const totalRow = worksheet.lastRow;
-            totalRow.getCell(7).font = { bold: true };
-            totalRow.getCell(8).font = { bold: true };
-            totalRow.getCell(8).numFmt = '"Rp"#,##0';
-            
-            return worksheet;
-        }
-
-        async function createCustomPeriodWorksheet(workbook, startDate, endDate) {
-            const worksheet = workbook.addWorksheet('Laporan Custom');
-            
-            // Filter transactions by date range
-            const filteredTransactions = transactions.filter(trans => {
-                const transDate = new Date(trans.date.split('/').reverse().join('-'));
-                return transDate >= startDate && transDate <= endDate;
-            });
-            
-            // Header
-            worksheet.mergeCells('A1:H1');
-            worksheet.getCell('A1').value = 'LAPORAN PENJUALAN CUSTOM PERIODE';
-            worksheet.getCell('A1').font = { bold: true, size: 16 };
-            worksheet.getCell('A1').alignment = { horizontal: 'center' };
-            
-            worksheet.mergeCells('A2:H2');
-            worksheet.getCell('A2').value = `Periode: ${startDate.toLocaleDateString('id-ID')} s/d ${endDate.toLocaleDateString('id-ID')}`;
-            worksheet.getCell('A2').alignment = { horizontal: 'center' };
-            
-            worksheet.mergeCells('A3:H3');
-            worksheet.getCell('A3').value = `Jumlah Transaksi: ${filteredTransactions.length}`;
-            worksheet.getCell('A3').alignment = { horizontal: 'center' };
-            
-            // Column headers
-            const headers = ['Tanggal', 'ID Transaksi', 'Nama Produk', 'Qty', 'Harga', 'Subtotal', 'Pajak', 'Total'];
-            worksheet.addRow(headers);
-            
-            // Style header row
-            const headerRow = worksheet.getRow(5);
-            headerRow.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-            headerRow.fill = {
-                type: 'pattern',
-                pattern: 'solid',
-                fgColor: { argb: 'FF9B59B6' }
-            };
-            headerRow.alignment = { horizontal: 'center' };
-            
-            // Data rows
-            let grandTotal = 0;
-            filteredTransactions.forEach(transaction => {
-                transaction.items.forEach(item => {
-                    const subtotal = item.quantity * item.price;
-                    const taxAmount = subtotal * (transaction.tax / 100);
-                    const total = subtotal + taxAmount;
-                    
-                    const row = worksheet.addRow([
-                        transaction.date,
-                        transaction.id,
-                        item.name,
-                        item.quantity,
-                        item.price,
-                        subtotal,
-                        taxAmount,
-                        total
-                    ]);
-                    
-                    // Number formatting
-                    row.getCell(5).numFmt = '"Rp"#,##0';
-                    row.getCell(6).numFmt = '"Rp"#,##0';
-                    row.getCell(7).numFmt = '"Rp"#,##0';
-                    row.getCell(8).numFmt = '"Rp"#,##0';
-                    
-                    grandTotal += total;
-                });
-            });
-            
-            // Summary
-            worksheet.addRow([]);
-            worksheet.addRow(['', '', '', '', '', '', 'GRAND TOTAL:', grandTotal]);
-            const totalRow = worksheet.lastRow;
-            totalRow.getCell(7).font = { bold: true };
-            totalRow.getCell(8).font = { bold: true };
-            totalRow.getCell(8).numFmt = '"Rp"#,##0';
-            
-            return worksheet;
-        }
-
-        // ==================== EXPORT HELPER FUNCTIONS ====================
-        
-        function getCurrentDate() {
-            const now = new Date();
-            return now.toISOString().split('T')[0].replace(/-/g, '');
-        }
-
-        function showExportModal() {
-            document.getElementById('exportModal').classList.add('active');
-        }
-
-        function closeExportModal() {
-            document.getElementById('exportModal').classList.remove('active');
-        }
-
-        function showCustomExportOptions() {
-            document.getElementById('customExportOptions').style.display = 'block';
-        }
-
-        async function exportCustomPeriod() {
-            const startDate = new Date(document.getElementById('exportStartDate').value);
-            const endDate = new Date(document.getElementById('exportEndDate').value);
-            
-            if (!startDate || !endDate || startDate > endDate) {
-                showAlert('error', 'Tanggal tidak valid');
-                return;
-            }
-            
-            showLoading(true);
-            
-            try {
-                const workbook = new ExcelJS.Workbook();
-                await createCustomPeriodWorksheet(workbook, startDate, endDate);
-                
-                const fileName = `Laporan_Custom_${startDate.toISOString().split('T')[0]}_${endDate.toISOString().split('T')[0]}.xlsx`;
-                const buffer = await workbook.xlsx.writeBuffer();
-                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-                saveAs(blob, fileName);
-                
-                addToExportHistory('custom', fileName, workbook.getWorksheet('Laporan Custom').rowCount - 5);
-                
-                showAlert('success', `Laporan custom periode berhasil diexport`);
-                
-            } catch (error) {
-                console.error('Export custom error:', error);
-                showAlert('error', 'Gagal export: ' + error.message);
-            } finally {
-                showLoading(false);
-                closeExportModal();
-            }
-        }
-
-        async function exportAllData() {
-            showLoading(true);
-            
-            try {
-                const workbook = new ExcelJS.Workbook();
-                
-                // Create multiple worksheets
-                await createProductWorksheet(workbook);
-                await createSalesReportWorksheet(workbook);
-                await createStockReportWorksheet(workbook);
-                await createTransactionWorksheet(workbook);
-                
-                // Summary sheet
-                const summarySheet = workbook.addWorksheet('Ringkasan');
-                summarySheet.addRow(['RINGKASAN DATA KASIR']);
-                summarySheet.addRow([]);
-                summarySheet.addRow(['Total Produk:', products.length]);
-                summarySheet.addRow(['Total Transaksi:', transactions.length]);
-                summarySheet.addRow(['Tanggal Export:', new Date().toLocaleDateString('id-ID')]);
-                
-                const fileName = `Backup_Data_Kasir_${getCurrentDate()}.xlsx`;
-                const buffer = await workbook.xlsx.writeBuffer();
-                const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-                saveAs(blob, fileName);
-                
-                addToExportHistory('all', fileName, products.length + transactions.length);
-                
-                showAlert('success', 'Semua data berhasil diexport ke Excel');
-                
-            } catch (error) {
-                console.error('Export all error:', error);
-                showAlert('error', 'Gagal export semua data: ' + error.message);
-            } finally {
-                showLoading(false);
-            }
-        }
-
-        function addToExportHistory(type, fileName, dataCount) {
-            const history = {
-                date: new Date().toLocaleString('id-ID'),
-                type: type,
-                fileName: fileName,
-                dataCount: dataCount,
-                fileSize: '~' + Math.floor(dataCount * 0.1) + ' KB'
-            };
-            
-            exportHistory.unshift(history);
-            if (exportHistory.length > 10) exportHistory.pop();
-            
-            localStorage.setItem('kasir_export_history', JSON.stringify(exportHistory));
-            updateExportHistoryTable();
-        }
-
-        function updateExportHistoryTable() {
-            const table = document.getElementById('exportHistoryTable');
-            if (!table) return;
-            
-            table.innerHTML = '';
-            
-            exportHistory.forEach(history => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${history.date}</td>
-                    <td>${getExportTypeLabel(history.type)}</td>
-                    <td>${history.dataCount} data</td>
-                    <td>${history.fileSize}</td>
-                    <td><span style="color: #27ae60;">✓ Berhasil</span></td>
-                `;
-                table.appendChild(row);
-            });
-        }
-
-        function getExportTypeLabel(type) {
-            const labels = {
-                'penjualan': 'Laporan Penjualan',
-                'produk': 'Data Produk',
-                'stok': 'Laporan Stok',
-                'transaksi': 'Transaksi',
-                'custom': 'Custom Periode',
-                'all': 'Semua Data'
-            };
-            return labels[type] || type;
-        }
-
-        function updateExportStats() {
-            const today = new Date().toLocaleDateString('id-ID');
-            const todaySales = transactions
-                .filter(t => t.date === today)
-                .reduce((sum, t) => sum + t.total, 0);
-            
-            const lowStockCount = products.filter(p => p.stock < p.minStock).length;
-            
-            document.getElementById('exportProductCount').textContent = products.length;
-            document.getElementById('exportTransactionCount').textContent = transactions.length;
-            document.getElementById('exportLowStockCount').textContent = lowStockCount;
-            document.getElementById('exportTodaySales').textContent = formatCurrency(todaySales);
-            
-            updateExportHistoryTable();
-        }
-
-        // ==================== QUICK EXPORT BUTTONS ====================
-        
-        function exportDashboardExcel() {
-            exportToExcel('penjualan');
-        }
-
-        function exportProductExcel() {
-            exportToExcel('produk');
-        }
-
-        function exportSalesExcel() {
-            exportToExcel('penjualan');
-        }
-
-        function exportTransactionsExcel() {
-            exportToExcel('transaksi');
-        }
-
-        function exportToPDF() {
-            showAlert('info', 'Fitur export PDF akan datang. Gunakan Print > Save as PDF untuk saat ini.');
-            // For now, trigger print dialog
-            window.print();
-        }
-
-        // ==================== KASIR FUNCTIONS ====================
-        // [Previous kasir functions remain the same...]
-        // Note: I'm truncating here to save space, but all previous kasir functions should be included
-
+        // ==================== KASIR ====================
         function loadProductsForKasir() {
             const container = document.getElementById('productGridKasir');
             if (!container) return;
@@ -2475,7 +1452,361 @@
             loadDashboard();
             loadProductsForKasir();
             loadProductsForManage();
-            updateExportStats();
+        }
+
+        // ==================== PRODUK MANAGEMENT ====================
+        function loadProductsForManage() {
+            const container = document.getElementById('productGridManage');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            // Apply filters
+            const searchTerm = document.getElementById('searchProduct')?.value.toLowerCase() || '';
+            const categoryFilter = document.getElementById('filterCategory')?.value || '';
+            const stockFilter = document.getElementById('filterStock')?.value || '';
+            
+            const filteredProducts = products.filter(product => {
+                // Search filter
+                if (searchTerm && !product.name.toLowerCase().includes(searchTerm) && 
+                    !product.code.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+                
+                // Category filter
+                if (categoryFilter && product.category !== categoryFilter) {
+                    return false;
+                }
+                
+                // Stock filter
+                if (stockFilter) {
+                    if (stockFilter === 'low' && product.stock >= product.minStock) return false;
+                    if (stockFilter === 'medium' && (product.stock < product.minStock || product.stock > 50)) return false;
+                    if (stockFilter === 'high' && product.stock <= 50) return false;
+                }
+                
+                return true;
+            });
+            
+            // Render products
+            filteredProducts.forEach(product => {
+                const stockClass = getStockClass(product.stock, product.minStock);
+                const stockBadge = getStockBadge(product.stock, product.minStock);
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+                        <div class="product-name">${product.name}</div>
+                        <div style="font-size: 11px; background: #e3f2fd; color: #1976d2; padding: 2px 8px; border-radius: 10px;">
+                            ${product.code}
+                        </div>
+                    </div>
+                    <div class="product-price">${formatCurrency(product.price)}</div>
+                    <div style="color: #7f8c8d; font-size: 12px; margin-bottom: 10px;">
+                        ${product.category} • ${product.unit}
+                    </div>
+                    <div class="product-stock">
+                        <div>
+                            <div>Stok: <strong>${product.stock}</strong></div>
+                            <div style="font-size: 11px;">Terjual: ${product.sold || 0}</div>
+                        </div>
+                        <span class="stock-badge ${stockClass}">${stockBadge}</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <button onclick="editProduct(${product.id})" style="flex: 1; padding: 8px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            ✏️ Edit
+                        </button>
+                        <button onclick="deleteProduct(${product.id})" style="flex: 1; padding: 8px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            🗑️ Hapus
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(productCard);
+            });
+        }
+
+        function filterProducts() {
+            loadProductsForManage();
+        }
+
+        function showAddProductModal() {
+            currentProductId = null;
+            document.getElementById('modalTitle').textContent = 'Tambah Produk Baru';
+            document.getElementById('modalProductName').value = '';
+            document.getElementById('modalProductPrice').value = '';
+            document.getElementById('modalProductStock').value = '';
+            document.getElementById('modalProductCategory').value = 'Sembako';
+            document.getElementById('modalProductUnit').value = 'pcs';
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function editProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            currentProductId = productId;
+            document.getElementById('modalTitle').textContent = 'Edit Produk';
+            document.getElementById('modalProductName').value = product.name;
+            document.getElementById('modalProductPrice').value = product.price;
+            document.getElementById('modalProductStock').value = product.stock;
+            document.getElementById('modalProductCategory').value = product.category;
+            document.getElementById('modalProductUnit').value = product.unit;
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        function saveProduct() {
+            const name = document.getElementById('modalProductName').value.trim();
+            const price = parseFloat(document.getElementById('modalProductPrice').value);
+            const stock = parseInt(document.getElementById('modalProductStock').value);
+            const category = document.getElementById('modalProductCategory').value;
+            const unit = document.getElementById('modalProductUnit').value;
+            
+            if (!name || !price || !stock) {
+                showAlert('error', 'Harap isi semua field dengan benar!');
+                return;
+            }
+            
+            if (currentProductId) {
+                // Update existing product
+                const productIndex = products.findIndex(p => p.id === currentProductId);
+                if (productIndex !== -1) {
+                    products[productIndex] = {
+                        ...products[productIndex],
+                        name: name,
+                        price: price,
+                        stock: stock,
+                        category: category,
+                        unit: unit
+                    };
+                    showAlert('success', 'Produk berhasil diupdate!');
+                }
+            } else {
+                // Add new product
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                const code = 'PRD' + newId.toString().padStart(3, '0');
+                
+                products.push({
+                    id: newId,
+                    code: code,
+                    name: name,
+                    price: price,
+                    cost: price * 0.8, // Default cost 80% of price
+                    category: category,
+                    unit: unit,
+                    stock: stock,
+                    minStock: 10,
+                    sold: 0
+                });
+                showAlert('success', 'Produk baru berhasil ditambahkan!');
+            }
+            
+            saveToLocalStorage();
+            closeModal();
+            loadProductsForKasir();
+            loadProductsForManage();
+            loadDashboard();
+        }
+
+        function deleteProduct(productId) {
+            if (!confirm('Apakah Anda yakin ingin menghapus produk ini?')) return;
+            
+            const productIndex = products.findIndex(p => p.id === productId);
+            if (productIndex !== -1) {
+                products.splice(productIndex, 1);
+                saveToLocalStorage();
+                showAlert('success', 'Produk berhasil dihapus!');
+                loadProductsForKasir();
+                loadProductsForManage();
+                loadDashboard();
+            }
+        }
+
+        // ==================== LAPORAN ====================
+        function toggleCustomDate() {
+            const period = document.getElementById('reportPeriod').value;
+            const customRange = document.getElementById('customDateRange');
+            customRange.style.display = period === 'custom' ? 'grid' : 'none';
+        }
+
+        function generateReport() {
+            const period = document.getElementById('reportPeriod').value;
+            let filteredTransactions = [];
+            
+            const today = new Date();
+            const yesterday = new Date(today);
+            yesterday.setDate(yesterday.getDate() - 1);
+            
+            switch (period) {
+                case 'today':
+                    filteredTransactions = transactions.filter(t => t.date === today.toLocaleDateString('id-ID'));
+                    break;
+                case 'yesterday':
+                    filteredTransactions = transactions.filter(t => t.date === yesterday.toLocaleDateString('id-ID'));
+                    break;
+                case 'week':
+                    const weekAgo = new Date(today);
+                    weekAgo.setDate(weekAgo.getDate() - 7);
+                    filteredTransactions = transactions.filter(t => {
+                        const transDate = new Date(t.date.split('/').reverse().join('-'));
+                        return transDate >= weekAgo && transDate <= today;
+                    });
+                    break;
+                case 'month':
+                    const monthAgo = new Date(today);
+                    monthAgo.setMonth(monthAgo.getMonth() - 1);
+                    filteredTransactions = transactions.filter(t => {
+                        const transDate = new Date(t.date.split('/').reverse().join('-'));
+                        return transDate >= monthAgo && transDate <= today;
+                    });
+                    break;
+                case 'custom':
+                    const startDate = document.getElementById('startDate').value;
+                    const endDate = document.getElementById('endDate').value;
+                    if (startDate && endDate) {
+                        filteredTransactions = transactions.filter(t => {
+                            const transDate = new Date(t.date.split('/').reverse().join('-'));
+                            const start = new Date(startDate);
+                            const end = new Date(endDate);
+                            return transDate >= start && transDate <= end;
+                        });
+                    }
+                    break;
+                default:
+                    filteredTransactions = transactions;
+            }
+            
+            // Calculate report statistics
+            let totalSales = 0;
+            let totalItems = 0;
+            
+            filteredTransactions.forEach(trans => {
+                totalSales += trans.total;
+                totalItems += trans.items.reduce((sum, item) => sum + item.quantity, 0);
+            });
+            
+            const avgTransaction = filteredTransactions.length > 0 ? totalSales / filteredTransactions.length : 0;
+            
+            // Update report cards
+            document.getElementById('reportTotalSales').textContent = formatCurrency(totalSales);
+            document.getElementById('reportTotalTransactions').textContent = filteredTransactions.length;
+            document.getElementById('reportAvgTransaction').textContent = formatCurrency(avgTransaction);
+            document.getElementById('reportTotalItems').textContent = totalItems;
+            
+            // Update report table
+            const tableBody = document.getElementById('reportTable');
+            tableBody.innerHTML = '';
+            
+            filteredTransactions.forEach((trans, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${trans.date}<br><small>${trans.time}</small></td>
+                    <td>${trans.id}</td>
+                    <td>${trans.items.map(item => `${item.name} (${item.quantity}x)`).join('<br>')}</td>
+                    <td>${trans.items.reduce((sum, item) => sum + item.quantity, 0)}</td>
+                    <td>${formatCurrency(trans.total)}</td>
+                    <td>${trans.kasir || 'Admin'}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // ==================== TRANSAKSI ====================
+        function loadTransactions() {
+            const tableBody = document.getElementById('transactionTable');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            transactions.slice(0, 50).forEach((trans, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${trans.date}<br><small>${trans.time}</small></td>
+                    <td>${trans.id}</td>
+                    <td>${trans.items.map(item => `${item.name} (${item.quantity}x)`).join('<br>')}</td>
+                    <td>${formatCurrency(trans.total)}</td>
+                    <td>${formatCurrency(trans.payment)}</td>
+                    <td>${formatCurrency(trans.change)}</td>
+                    <td>
+                        <button onclick="viewTransaction('${trans.id}')" style="padding: 5px 10px; background: #3498db; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 12px;">
+                            Lihat
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function viewTransaction(transactionId) {
+            const transaction = transactions.find(t => t.id === transactionId);
+            if (!transaction) return;
+            
+            alert(`
+                DETAIL TRANSAKSI
+                ===================
+                ID: ${transaction.id}
+                Tanggal: ${transaction.date} ${transaction.time}
+                Kasir: ${transaction.kasir}
+                
+                ITEMS:
+                ${transaction.items.map(item => `- ${item.name}: ${item.quantity} x ${formatCurrency(item.price)} = ${formatCurrency(item.quantity * item.price)}`).join('\n')}
+                
+                Subtotal: ${formatCurrency(transaction.subtotal)}
+                Pajak (${transaction.tax}%): ${formatCurrency(transaction.subtotal * (transaction.tax / 100))}
+                Total: ${formatCurrency(transaction.total)}
+                Bayar: ${formatCurrency(transaction.payment)}
+                Kembali: ${formatCurrency(transaction.change)}
+            `);
+        }
+
+        // ==================== PENGATURAN ====================
+        function saveSettings() {
+            settings.storeName = document.getElementById('storeName').value;
+            settings.storeAddress = document.getElementById('storeAddress').value;
+            settings.storePhone = document.getElementById('storePhone').value;
+            settings.taxRate = parseFloat(document.getElementById('taxRate').value);
+            
+            localStorage.setItem('kasir_settings', JSON.stringify(settings));
+            showAlert('success', 'Pengaturan berhasil disimpan!');
+        }
+
+        function resetData() {
+            if (!confirm('PERINGATAN: Semua data akan direset ke default. Lanjutkan?')) return;
+            
+            if (confirm('Yakin reset SEMUA data?')) {
+                localStorage.clear();
+                initializeApp();
+                showAlert('success', 'Semua data telah direset ke default');
+                location.reload();
+            }
+        }
+
+        function exportData() {
+            const data = {
+                products: products,
+                transactions: transactions,
+                settings: settings,
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `backup-kasir-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showAlert('success', 'Data berhasil diexport!');
         }
 
         // ==================== UTILITIES ====================
@@ -2536,8 +1867,96 @@
         }
 
         function printReceipt(transaction) {
-            // ... existing print receipt code ...
+            if (!transaction) {
+                showAlert('error', 'Tidak ada transaksi untuk dicetak');
+                return;
+            }
+            
+            const receiptContent = `
+                <div style="font-family: 'Courier New', monospace; width: 72mm; padding: 10px;">
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <h2 style="margin: 0; font-size: 18px;">${settings.storeName}</h2>
+                        <p style="margin: 0; font-size: 10px;">${settings.storeAddress}</p>
+                        <p style="margin: 0; font-size: 10px;">Telp: ${settings.storePhone}</p>
+                        <hr style="border: none; border-top: 1px dashed #000; margin: 8px 0;">
+                        <p style="margin: 0; font-size: 9px;">${transaction.date} ${transaction.time}</p>
+                        <p style="margin: 0; font-size: 9px;"><strong>No: ${transaction.id}</strong></p>
+                        <hr style="border: none; border-top: 1px dashed #000; margin: 8px 0;">
+                    </div>
+                    
+                    <div style="font-size: 11px; margin-bottom: 10px;">
+                        ${transaction.items.map(item => `
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <div>${item.name}</div>
+                                <div>${item.quantity} x ${formatCurrency(item.price)}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px dashed #000; margin: 10px 0;">
+                    
+                    <div style="font-size: 11px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                            <div>Subtotal:</div>
+                            <div>${formatCurrency(transaction.subtotal)}</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                            <div>Pajak (${transaction.tax}%):</div>
+                            <div>${formatCurrency(transaction.subtotal * (transaction.tax / 100))}</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: bold;">
+                            <div>TOTAL:</div>
+                            <div>${formatCurrency(transaction.total)}</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                            <div>Bayar:</div>
+                            <div>${formatCurrency(transaction.payment)}</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold;">
+                            <div>Kembali:</div>
+                            <div>${formatCurrency(transaction.change)}</div>
+                        </div>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px dashed #000; margin: 10px 0;">
+                    
+                    <div style="text-align: center; font-size: 9px; margin-top: 15px;">
+                        <p style="margin: 0;">${settings.receiptFooter || 'Terima kasih atas kunjungan Anda'}</p>
+                        <p style="margin: 0; font-style: italic;">** Barang sudah dibeli tidak dapat ditukar **</p>
+                    </div>
+                </div>
+            `;
+            
+            const printWindow = window.open('', '_blank', 'width=400,height=600');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Struk - ${transaction.id}</title>
+                    <style>
+                        @media print {
+                            @page { margin: 0; size: 80mm auto; }
+                            body { margin: 0; padding: 0; }
+                        }
+                        body { font-family: 'Courier New', monospace; }
+                    </style>
+                </head>
+                <body>
+                    ${receiptContent}
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            setTimeout(() => window.close(), 1000);
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
         }
+
+        // Initialize when page loads
+        console.log('Aplikasi Kasir PRO v2.0 Loaded');
     </script>
 </body>
 </html>
