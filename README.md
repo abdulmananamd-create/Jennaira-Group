@@ -1058,9 +1058,9 @@
 
         function getDefaultSettings() {
             return {
-                storeName: 'TOKO MAKMUR SEJAHTERA',
-                storeAddress: 'Jl. Contoh No. 123, Kota Contoh',
-                storePhone: '(021) 1234-5678',
+                storeName: 'JENNAIRA FROZEN',
+                storeAddress: 'Jl. Bendung No. 964',
+                storePhone: '+6281298984738',
                 taxRate: 10,
                 receiptFooter: 'Terima kasih atas kunjungan Anda'
             };
