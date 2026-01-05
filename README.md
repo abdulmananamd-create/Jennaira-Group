@@ -5,7 +5,7 @@ Aplikasi kasir sederhana
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Kasir dengan Print Struk</title>
+    <title>JENNAIARA FROZEN CASHEER</title>
     <style>
         * {
             box-sizing: border-box;
@@ -358,7 +358,7 @@ Aplikasi kasir sederhana
             <h2 class="section-title">Struk Pembayaran</h2>
             <div class="receipt" id="receipt">
                 <div class="receipt-header">
-                    <h3>TOKO MAKMUR SEJAHTERA</h3>
+                    <h3>JENNAIRA FROZEN</h3>
                     <p>Jl. Contoh No. 123, Kota Contoh</p>
                     <p>Telp: (021) 123-4567</p>
                     <p>================================</p>
