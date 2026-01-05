@@ -1,0 +1,2 @@
+# Jennaira
+Aplikasi kasir sederhana
